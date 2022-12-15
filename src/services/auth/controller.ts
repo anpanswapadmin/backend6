@@ -9,14 +9,14 @@ export const find = (req: Request, res: Response, next: NextFunction) => {
 
 	// If a query string ?account=... is given, then filter results
 	const whereClause =
-		req.query && req.query.referralno
+		req.query && req.query.account && req.query.referralno
 			? {
-					where: { referralno: req.query.referralno },
+					where: { account: req.query.account, referralno: req.query.referralno },
 			  }
 			: undefined;
 
 	return User.findAll(whereClause)
-		.then((users2: User[]) => res.json(users2))
+		.then((user: User[]) => res.json(user))
 		.catch(next);
 };
 
@@ -95,7 +95,7 @@ export const create = (req: Request, res: Response, next: NextFunction) => {
 
 				user.nonce = Math.floor(Math.random() * 1000000000);
 				user.referrer = referralcode;
-				user.referralno = Math.floor(1);
+				user.referralno = "abc";
 				return user.save();
 			})
 			////////////////////////////////////////////////////

@@ -40,7 +40,7 @@ User.init(
 			type: STRING,
 		},
 		referralno: {
-			type: INTEGER.UNSIGNED, // SQLITE will use INTEGER
+			type: STRING,
 		},
 	},
 	{
